@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .backk{
+         padding-left: 660px;
+     }
+     table,td,th,tr{
+         border: 2px solid black;
+         border-collapse: collapse;
+         height: 50px;
+         width: 600px;
+     }
+     </style>
+</head>
+<body>
+    <h1>View users here!</h1>
+    {% if y %}
+    <form method="POST">
+        {% csrf_token %}
+        <label>Username</label>
+        <input type="text" name="username" value="{{y.Username}}"><br><br>
+        <label>Password</label>
+        <input type="password" name="pswd" value="{{y.Password}}"><br><br>
+        <label>Firstname</label>
+        <input type="text" name="fname" value="{{y.Firstname}}"><br><br>
+        <label>Lastname</label>
+        <input type="text" name="lname"  value="{{y.Lastname}}"><br><br>
+        <label>Place</label>
+        <input type="text" name="place" value="{{y.Place}}"><br><br>
+        <label>Phone</label>
+        <input type="number" name="phone" value="{{y.Phone}}"><br><br>
+        <label>Email</label>
+        <input type="email" name="email" value="{{y.Email}}"><br><br>
+        <input type="submit" name="submit" value="Register">
+
+    </form>
+    {% endif %}
+    {% if x %}
+        
+    <table>
+     <thead>
+         <th>Username</th>
+         <th>Password</th>
+         <th>Firstname</th>
+         <th>Lastname</th>
+         <th>Place</th>
+         <th>Phone</th>
+         <th>Email</th>
+
+     </thead>
+     <tbody>
+         {% for i in x %}
+         <tr>
+            <td>{{i.Username}}</td> 
+            <td>{{i.Password}}</td> 
+            <td>{{i.Firstname}}</td> 
+            <td>{{i.Lastname}}</td>
+            <td>{{i.Place}}</td>
+            <td>{{i.Phone}}</td>
+            <td>{{i.Email}}</td>
+            <td><a href="update/{{i.id}}">UPDATE</a></td>
+            <!-- <td><a href="delete/{{i.id}}">DELETE</a></td> -->
+         </tr>
+              {% endfor %}
+         
+     </tbody>
+    </table>
+    {% endif %}
+</body>
+</html>
